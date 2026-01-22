@@ -29,27 +29,26 @@ public class AulaApplication implements CommandLineRunner {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Digite o código do pedido: ");
-        int code = sc.nextInt();
+        int code = Integer.parseInt(sc.nextLine());
 
         System.out.print("Digite o valor básico do produto: ");
-        double basic = sc.nextDouble();
+        double basic = Double.parseDouble(sc.nextLine().replace(",", "."));
 
         System.out.print("Digite o percentual de desconto (%): ");
-        double discount = sc.nextDouble();
+        double discount = Double.parseDouble(sc.nextLine().replace(",", "."));
 
         Order order = new Order(code, basic, discount);
-
-        double valorComDesconto = orderService.discount(order.getBasic(), order.getDiscont());
+        double valorComDesconto = orderService.discount(order);
         double frete = shippingService.shipment(order);
         double total = valorComDesconto + frete;
 
-     
-        System.out.println("Código: " + order.getCode());
-        System.out.println("Valor básico: " + basic);
-        System.out.println("Desconto: " + discount + "%");
-        System.out.println("Valor com desconto: " + valorComDesconto);
-        System.out.println("Frete: " + frete);
-        System.out.println("TOTAL: " + total);
+        System.out.println("\n--- RESUMO DO PEDIDO ---");
+        System.out.println("Código do pedido: " + order.getCode());
+        System.out.printf("Valor básico: R$ %.2f%n", order.getBasic());
+        System.out.printf("Desconto: %.2f%%%n", order.getDiscount());
+        System.out.printf("Valor com desconto: R$ %.2f%n", valorComDesconto);
+        System.out.printf("Frete: R$ %.2f%n", frete);
+        System.out.printf("TOTAL: R$ %.2f%n", total);
 
         sc.close();
     }

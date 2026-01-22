@@ -1,25 +1,32 @@
 package com.exercicio.aula.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-
 public class Order {
+
     private Integer code;
     private Double basic;
-    private Double discont;
+    private Double discount;
 
-    public Order() {
+    public Order(){
+        
     }
 
-    public Order(Integer code, Double basic, Double discont) {
+    public Order(Integer code, Double basic, Double discount) {
         this.code = code;
         this.basic = basic;
-        this.discont = discont;
+        this.discount = discount;
     }
 
-    
+    public Integer getCode() {
+        return code;
+    }
 
+    public Double getBasic() {
+        return basic;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
 }
+
+
